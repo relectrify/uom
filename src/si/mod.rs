@@ -55,6 +55,7 @@ system! {
         angular_jerk::AngularJerk,
         angular_momentum::AngularMomentum,
         angular_velocity::AngularVelocity,
+        apparent_energy::ApparentEnergy,
         apparent_power::ApparentPower,
         area::Area,
         areal_density_of_states::ArealDensityOfStates,
