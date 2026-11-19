@@ -138,6 +138,7 @@ system! {
         radiant_exposure::RadiantExposure,
         radioactivity::Radioactivity,
         ratio::Ratio,
+        reactive_power::ReactivePower,
         reciprocal_length::ReciprocalLength,
         solid_angle::SolidAngle,
         specific_area::SpecificArea,
@@ -293,6 +294,19 @@ pub mod marker {
     /// let p: Power = s.into();
     /// ```
     pub trait ApparentPowerKind: Kind {}
+
+    /// `ReactivePowerKind` is a `Kind` for separating reactive power and energy from the
+    /// identically dimensioned real and apparent power and energy. Conversions to and from
+    /// `ReactivePowerKind` quantities are supported through implementations of the `From` trait.
+    ///
+    #[cfg_attr(feature = "f32", doc = " ```rust")]
+    #[cfg_attr(not(feature = "f32"), doc = " ```rust,ignore")]
+    /// # use uom::si::f32::*;
+    /// # use uom::si::reactive_power::volt_ampere_reactive;
+    /// let q: ReactivePower = ReactivePower::new::<volt_ampere_reactive>(1.0);
+    /// let p: Power = q.into();
+    /// ```
+    pub trait ReactivePowerKind: Kind {}
 
     /// `impl_from` generates generic inter-Kind implementations of `From`.
     #[cfg(feature = "autoconvert")]
@@ -461,4 +475,6 @@ pub mod marker {
     impl_from!(Kind, IlluminanceKind);
     impl_from!(ApparentPowerKind, Kind);
     impl_from!(Kind, ApparentPowerKind);
+    impl_from!(ReactivePowerKind, Kind);
+    impl_from!(Kind, ReactivePowerKind);
 }
