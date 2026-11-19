@@ -138,6 +138,7 @@ system! {
         radiant_exposure::RadiantExposure,
         radioactivity::Radioactivity,
         ratio::Ratio,
+        reactive_energy::ReactiveEnergy,
         reactive_power::ReactivePower,
         reciprocal_length::ReciprocalLength,
         solid_angle::SolidAngle,
