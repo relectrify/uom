@@ -55,6 +55,7 @@ system! {
         angular_jerk::AngularJerk,
         angular_momentum::AngularMomentum,
         angular_velocity::AngularVelocity,
+        apparent_power::ApparentPower,
         area::Area,
         areal_density_of_states::ArealDensityOfStates,
         areal_heat_capacity::ArealHeatCapacity,
@@ -279,6 +280,19 @@ pub mod marker {
     /// ```
     pub trait IlluminanceKind: Kind {}
 
+    /// `ApparentPowerKind` is a `Kind` for separating apparent power and energy from the
+    /// identically dimensioned real and reactive power and energy. Conversions to and from
+    /// `ApparentPowerKind` quantities are supported through implementations of the `From` trait.
+    ///
+    #[cfg_attr(feature = "f32", doc = " ```rust")]
+    #[cfg_attr(not(feature = "f32"), doc = " ```rust,ignore")]
+    /// # use uom::si::f32::*;
+    /// # use uom::si::apparent_power::volt_ampere;
+    /// let s: ApparentPower = ApparentPower::new::<volt_ampere>(1.0);
+    /// let p: Power = s.into();
+    /// ```
+    pub trait ApparentPowerKind: Kind {}
+
     /// `impl_from` generates generic inter-Kind implementations of `From`.
     #[cfg(feature = "autoconvert")]
     #[macro_export]
@@ -444,4 +458,6 @@ pub mod marker {
     impl_from!(Kind, KinematicViscosityKind);
     impl_from!(IlluminanceKind, Kind);
     impl_from!(Kind, IlluminanceKind);
+    impl_from!(ApparentPowerKind, Kind);
+    impl_from!(Kind, ApparentPowerKind);
 }
